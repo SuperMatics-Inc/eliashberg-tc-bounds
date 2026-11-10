@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this material, please cite the paper it accompanies."
+title: "Supplement to 'Sharp bounds on the Eliashberg critical temperature': Lean formalization, computer-assisted certificates and scripts"
+type: software
+version: 1.0.0
+license: Apache-2.0
+authors:
+  - family-names: Rens
+    given-names: Davis
+    affiliation: "SuperMatics Inc."
+    email: davis@supermatics.io
+keywords:
+  - Eliashberg theory
+  - superconductivity
+  - critical temperature
+  - mathematical physics
+  - Lean 4
+  - computer-assisted proof
+  - interval arithmetic
+preferred-citation:
+  type: article
+  title: "Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures"
+  authors:
+    - family-names: Rens
+      given-names: Davis
+      affiliation: "SuperMatics Inc."
+  year: 2026
+  status: preprint

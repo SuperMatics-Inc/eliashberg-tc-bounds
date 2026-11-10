@@ -62,7 +62,7 @@ def flatten_tex() -> str:
 
 
 def build_supplement(dest: Path) -> list[tuple[Path, str]]:
-    members: list[tuple[Path, str]] = [(PAPER / 'SUPPLEMENT-README.md', 'README.md')]
+    members: list[tuple[Path, str]] = [(PAPER / 'SUPPLEMENT-README.md', 'README.md'), (PAPER / 'SUPPLEMENT-LICENSE', 'LICENSE')]
     for pattern in SUPPLEMENT:
         hits = sorted(PAPER.glob(pattern))
         if not hits:

@@ -40,3 +40,9 @@ python verify_rational.py                      # prints PASS, under 1 s
 ```
 
 Each script exits with status 0 only if every inequality it checks holds. Floating point is used only to propose trial vectors and Cholesky or Gram factors; these are then converted to exact dyadic or rational data, and every accepted inequality is decided in ball or exact rational arithmetic.
+
+The trial data come from floating-point linear algebra and therefore depend on the platform; the accepted inequalities do not. On 9 November 2026 both certificates were rerun from a clean copy of this archive on an arm64 macOS machine (Python 3.12, NumPy 2.5.4, python-flint 0.9.0): both printed PASS and exited with status 0, with trial data that differ from the shipped receipts in the last digits.
+
+## Licence
+
+The code, Lean sources, data and documentation in this supplement are released under the Apache License, Version 2.0 (`LICENSE`).

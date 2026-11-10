@@ -1,0 +1,56 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certificates:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Digests quoted in the paper
+        run: |
+          sha256sum -c <<'EOF'
+          197786ca6b2fb0676ffde142bf6c7bbec1b5c97f8e43d988bfcf53bd2decbaec  certificates/PROOF-PLAN.md
+          cd41aff1b564efe08fa23eea1849b709fe1324661d20b26d55652bcd15df4d9d  certificates/certify_arb.py
+          7242083ff94a7c1f939a39ea6df55f18b4398ae220fd7b87b9c28646356f8036  certificates/verify_rational.py
+          9ce805079f1f3a1abce66b757210adba40ee647f656fddf4588387664d893bfe  certificates/receipt-arb.json
+          4a502d96d2cc311ba5948e67ebd861b36e913650778af7ab1fc46192c86c3e03  certificates/receipt-rational.json
+          EOF
+      - name: Install
+        run: python -m pip install numpy scipy python-flint==0.9.0
+      - name: Arb certificate
+        working-directory: certificates
+        run: python certify_arb.py --out "$RUNNER_TEMP/receipt-arb.json"
+      - name: Exact-rational certificate
+        working-directory: certificates
+        run: python verify_rational.py
+      - name: Conjecture 3 spot checks (not part of the proof)
+        run: python scripts/conj3_check.py
+
+  lean:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: No sorry, admit, axiom declarations or native_decide
+        run: |
+          if grep -rnE '\b(sorry|admit|native_decide)\b|^[[:space:]]*axiom[[:space:]]' lean/KayProof lean/KayProof.lean; then
+            exit 1
+          fi
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: lean
+      - name: Axioms of the 16 theorems of Table 1
+        working-directory: lean
+        run: |
+          lake env lean AxiomCheck.lean | tee axioms.txt
+          test "$(grep -c "depends on axioms: \[propext, Classical.choice, Quot.sound\]" axioms.txt)" -eq 16
+          test "$(grep -c "depends on axioms" axioms.txt)" -eq 16

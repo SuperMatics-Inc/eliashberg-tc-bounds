@@ -1,0 +1,43 @@
+{
+  "upload_type": "software",
+  "title": "Supplement to 'Sharp bounds on the Eliashberg critical temperature': Lean formalization, computer-assisted certificates and scripts",
+  "creators": [
+    {
+      "name": "Rens, Davis",
+      "affiliation": "SuperMatics Inc."
+    }
+  ],
+  "description": "<p>Supplementary material for D. Rens, \"Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures\".</p><p>Contents: a Lean 4 formalization (Mathlib v4.35.0) of the finite-dimensional core of the proofs (16 theorems, axioms propext, Classical.choice and Quot.sound only); a primary computer-assisted proof of the Einstein inequality in Arb ball arithmetic and an independent exact-rational certificate, with their receipts; and the scripts that write the certificate numbers quoted in the paper, the figure data and the floating-point checks. Floating-point values marked as such in the paper are not certified.</p>",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "language": "eng",
+  "keywords": [
+    "Eliashberg theory",
+    "superconductivity",
+    "critical temperature",
+    "mathematical physics",
+    "Lean 4",
+    "computer-assisted proof",
+    "interval arithmetic"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1007/s10955-025-03446-5",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s10955-025-03468-z",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s10955-025-03469-y",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    }
+  ]
+}
