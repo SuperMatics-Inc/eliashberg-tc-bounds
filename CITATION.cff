@@ -4,6 +4,8 @@ title: "Supplement to 'Sharp bounds on the Eliashberg critical temperature': Lea
 type: software
 version: 1.0.0
 license: Apache-2.0
+doi: 10.5281/zenodo.24270481
+repository-code: "https://github.com/SuperMatics-Inc/eliashberg-tc-bounds"
 authors:
   - family-names: Rens
     given-names: Davis
@@ -26,3 +28,9 @@ preferred-citation:
       affiliation: "SuperMatics Inc."
   year: 2026
   status: preprint
+  doi: 10.48550/arXiv.2611.20496
+  url: "https://arxiv.org/abs/2611.20496"
+  identifiers:
+    - type: other
+      value: "arXiv:2611.20496"
+      description: "arXiv identifier"
