@@ -1,6 +1,8 @@
 # Supplementary material
 
-Supplement to D. Rens, "Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures".
+Supplement to D. Rens, "Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures", [arXiv:2611.20496](https://arxiv.org/abs/2611.20496) (2026). Not yet peer reviewed.
+
+Release v1.0.0, the files as posted with the arXiv submission, is archived at Zenodo: [doi:10.5281/zenodo.24270482](https://doi.org/10.5281/zenodo.24270482) (all versions: [doi:10.5281/zenodo.24270481](https://doi.org/10.5281/zenodo.24270481)).
 
 ## Contents
 
