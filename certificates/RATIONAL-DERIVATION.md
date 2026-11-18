@@ -1,10 +1,10 @@
-# Derivation of the exact-rational certificate
+# Independent audit of PROOF-PLAN.md
 
-We derive the checks in `verify_rational.py` from the fixed proof plan and elementary operator estimates. The derivation and implementation were developed without using `certify_arb.py`, its results or its trial objects. Floating-point linear algebra proposes exact dyadic trial objects; the verifier decides every inequality over the rationals.
+No error in L1–L8 has been identified. This audit and the verifier were developed from the frozen plan and elementary operator estimates; the primary certificate `certify_arb.py`, its receipt and its trial objects were not read or imported. Numerical linear algebra is used only to propose exact dyadic objects. Every inequality accepted by `verify_rational.py` is checked over rational numbers.
 
-## Scope
+## Scope qualification
 
-The certificate proves `sup spec G(v) < g` for every `v > 0` and the stated consequence for the linearized dispersive operator. Existence or uniqueness of a thermodynamic transition and monotonicity of the crossing lie outside its scope.
+The result certified here is the plan's Main Theorem, `sup spec G(v) < g` for every `v > 0`, and its stated linearized dispersive consequence. It does not establish existence or uniqueness of a thermodynamic transition, or monotonicity of the crossing. Those broader assertions appearing in the papers' conjectures must not be inferred from this certificate.
 
 The operator normalization was checked against the arXiv texts of Kiessling, Altshuler and Yuzbashyan: Part III equations (40)–(42) give precisely `H(v)=v^2 G(v)`; Part I equations (42)–(44) give precisely `G0=G(gamma=2)`. Part I identifies `g(gamma)` as the largest eigenvalue; the proof here uses that variational definition and does not need the separate spectral-radius proposition. Part II gives the dispersive operator as the averages of the same three components (its equations (39)–(42)). Thus no factor of two or Matsubara weight is changed by the congruence.
 
@@ -38,7 +38,7 @@ Hence `epsilon < tau` implies `sI-A >= (tau-epsilon)I > 0`. This is an independe
 
 For the nonnegative symmetric positive part, use Schur weights `p_n = 1/sqrt(w_n)`. Its weighted row sum is exactly `sum_m [(1-delta_nm)c_|n-m| + c_(n+m+1)]/w_m`. On indices `m >= N`, replace `1/w_m` by `1/w_N`. The two sides of the Toeplitz row each sum to at most `S`, and the Hankel row to at most `S`, giving `3S/w_N`. Dropping the subtracted nonnegative diagonal bounds the spectral supremum, not the norm of the signed block. The Schur weights need not belong to `l2`: apply the estimate first to finite supports.
 
-The rational verifier uses an integral estimate in place of the coth formula:
+`verify.py` independently replaces the coth formula by the rational integral estimate
 
 `S(v) <= sum_(j=1)^K 1/(v^2+j^2) + 1/K`,
 
@@ -68,4 +68,4 @@ Finally the orthogonal decomposition gives the plan's two-by-two lower matrix. T
 
 ## Dispersive consequence
 
-With positive frequencies almost surely and finite second moment, `h(v) < g v^2` integrates strictly: the nonnegative difference is positive almost surely and integrable. For every unit vector, the quadratic form of the integral operator is at most `integral h(v) dP < g integral v^2 dP`. The bound is independent of the vector, so taking the supremum preserves strictness. The temperature inequality follows under the stated linearized spectral instability condition.
+With positive frequencies almost surely and finite second moment, `h(v) < g v^2` integrates strictly: the nonnegative difference is positive almost surely and integrable. For every unit vector, the quadratic form of the integral operator is at most `integral h(v) dP < g integral v^2 dP`; this bound is independent of the vector, so taking its supremum retains strictness. Thus the claimed temperature inequality follows whenever the stated linearized spectral instability condition holds. No assertion of crossing uniqueness is added.
