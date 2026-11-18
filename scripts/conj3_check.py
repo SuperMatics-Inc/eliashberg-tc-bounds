@@ -1,7 +1,7 @@
-"""Diagnostics for CONJ3-PROOF.md; float checks and exact rational checks.
+"""Spot-check the finite Conjecture 3 inequalities.
 
-Run from the paper folder: python scripts/conj3_check.py (needs numpy).
-A successful run is not a proof or an independent review.
+The script uses floating point and exact fractions on selected inputs.
+Run from the repository root with NumPy installed: python scripts/conj3_check.py
 """
 
 from fractions import Fraction

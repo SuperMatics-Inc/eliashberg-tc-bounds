@@ -1,22 +1,24 @@
-# Supplementary material
+# Sharp bounds on the Eliashberg critical temperature
 
-Supplement to D. Rens, "Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures".
+This supplement accompanies D. Rens, “Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures” ([arXiv:2611.20496](https://arxiv.org/abs/2611.20496)). Lean formalizes the finite-dimensional core. Two independent calculations certify the Einstein inequality in Appendix A, one in Arb ball arithmetic and the other over the rationals. The archived supplement is [10.5281/zenodo.24270482](https://doi.org/10.5281/zenodo.24270482).
 
 ## Contents
 
-| Path | What it is |
+| Files | Contents |
 |---|---|
-| `lean/` | Lean 4 formalization of the finite-dimensional core (Section 7.1, Table 1). |
-| `certificates/certify_arb.py`, `receipt-arb.json` | Primary computer-assisted proof of the Einstein inequality in Arb ball arithmetic (Appendix A). |
-| `certificates/PROOF-PLAN.md` | The plan of the primary certificate, fixed before it was run; its SHA-256 is quoted in Appendix A. |
-| `certificates/verify_rational.py`, `receipt-rational.json`, `RATIONAL-DERIVATION.md` | Independent exact-rational certificate and the derivation of its lemmas (Appendix A). |
-| `scripts/values.py` | Writes `values.tex`, the only source of the certificate numbers quoted in the paper, from the two receipts. |
-| `scripts/curve_data.py`, `scripts/fig_curves.py`, `data/curve.json` | Floating-point data and plotting for Figure 2. No proof uses them. |
-| `scripts/fig_pieces.py` | Figure 1 (exact sign pattern, no numerics). |
-| `scripts/figstyle.py` | Shared figure style (fonts, Springer column widths, palette) used by both figure scripts. Rebuilding the figures from this archive in the author's environment reproduced the shipped PDFs byte for byte (checked 9 Nov 2026); other matplotlib versions can differ in PDF object order while drawing the same figures. |
-| `scripts/conj3_check.py` | Numerical and exact-fraction spot checks of the Conjecture 3 theorem on random inputs. Not part of the proof. |
-| `scripts/moment_constant.py`, `data/moment_constant.json` | Floating-point value of the zeroth-moment constant $H_0$ of Theorem 8 and the optimal Einstein spectrum, at $N=400$ and $N=800$. Not certified; no proof uses it. |
-| `scripts/flatten.py` | Builds the single-file journal source. |
+| `lean/` | The finite-dimensional proofs in Lean 4 (Section 7.1, Table 1). |
+| `certificates/certify_arb.py`, `certificates/receipt-arb.json` | The primary proof of the Einstein inequality in Arb ball arithmetic (Appendix A). |
+| `certificates/PROOF-PLAN.md` | The proof plan as it stood before the certificate runs. Appendix A quotes its SHA-256 digest. |
+| `certificates/verify_rational.py`, `certificates/receipt-rational.json`, `certificates/RATIONAL-DERIVATION.md` | The independent exact-rational certificate and its derivation (Appendix A). |
+| `scripts/values.py` | Generates `values.tex`, the source of the paper's certificate values, from the two JSON files. |
+| `scripts/curve_data.py`, `scripts/fig_curves.py`, `data/curve.json` | Floating-point data and plotting code for Figure 2. |
+| `scripts/fig_pieces.py` | Figure 1, drawn from the exact sign pattern. |
+| `scripts/figstyle.py` | The fonts, Springer column widths and colours shared by the two figures. |
+| `scripts/conj3_check.py` | Floating-point and exact-fraction spot checks of the Conjecture 3 theorem on random inputs. |
+| `scripts/moment_constant.py`, `data/moment_constant.json` | Floating-point calculations of the zeroth-moment constant $H_0$ in Theorem 8 and the optimal Einstein spectrum, at $N=400$ and $N=800$. |
+| `scripts/flatten.py` | Assembles the single-file journal source. |
+
+The floating-point illustrations and spot checks do not enter the proofs. On 9 November 2026, rebuilding the figures in the author's environment reproduced the supplied PDFs byte for byte. Other Matplotlib versions can order PDF objects differently without changing the figures.
 
 ## Lean
 
@@ -28,7 +30,9 @@ lake build                      # builds the library KayProof
 lake env lean AxiomCheck.lean   # prints the axioms of every theorem in Table 1
 ```
 
-The toolchain (`lean-toolchain`) is Lean v4.35.0 and `lakefile.toml` pins Mathlib v4.35.0. `KayProof/Defs.lean` holds every definition the theorem statements use (the truncated matrix, its quadratic form, the Rayleigh supremum `kappa`, kernels, the cone and the Conjecture 3 forms); the statements themselves are in `Rayleigh.lean`, `Cone.lean`, `Mu.lean`, `Comparison.lean` and `Conj3.lean`. On 9 November 2026 `lake build` finished without errors (linter and deprecation warnings only), the source contained no `sorry`, `admit`, `axiom` declarations or `native_decide`, and `AxiomCheck.lean` reported `[propext, Classical.choice, Quot.sound]` for all 16 theorems of Table 1.
+The build uses Lean v4.35.0 and Mathlib v4.35.0. `KayProof/Defs.lean` defines the truncated matrix and its quadratic form, the Rayleigh supremum `kappa`, and the kernels. It also defines the cone and the Conjecture 3 forms. The theorems are in `Rayleigh.lean`, `Cone.lean`, `Mu.lean`, `Comparison.lean` and `Conj3.lean`.
+
+On 9 November 2026 the Lean build finished with linter and deprecation warnings only. The sources used no `sorry`, `admit`, new `axiom` declarations or `native_decide`. All 16 theorems of Table 1 reported the same dependencies: `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Certificates
 
@@ -39,9 +43,9 @@ python certify_arb.py --out receipt-arb.json   # prints PASS, about 2 s
 python verify_rational.py                      # prints PASS, under 1 s
 ```
 
-Each script exits with status 0 only if every inequality it checks holds. Floating point is used only to propose trial vectors and Cholesky or Gram factors; these are then converted to exact dyadic or rational data, and every accepted inequality is decided in ball or exact rational arithmetic.
+Each script exits with status 0 only when all its inequalities hold. Floating-point linear algebra proposes trial vectors and Cholesky or Gram factors. The scripts convert those objects to exact dyadic or rational data and decide the inequalities in ball or exact rational arithmetic.
 
-The trial data come from floating-point linear algebra and therefore depend on the platform; the accepted inequalities do not. On 9 November 2026 both certificates were rerun from a clean copy of this archive on an arm64 macOS machine (Python 3.12, NumPy 2.5.4, python-flint 0.9.0): both printed PASS and exited with status 0, with trial data that differ from the shipped receipts in the last digits.
+On 9 November 2026 both certificates passed from a clean copy on arm64 macOS with Python 3.12, NumPy 2.5.4 and python-flint 0.9.0. The last digits of the trial data differed from the archived values. The accepted inequalities are independent of those platform differences.
 
 ## Licence
 

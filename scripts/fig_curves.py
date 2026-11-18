@@ -1,4 +1,4 @@
-"""Figure 2 (ratio and tc panels) from data/curve.json (floating-point illustration; no proof uses them)."""
+"""Plot the two panels of Figure 2 from the floating-point data in data/curve.json."""
 
 from __future__ import annotations
 

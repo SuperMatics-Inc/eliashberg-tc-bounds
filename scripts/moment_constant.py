@@ -1,7 +1,8 @@
-"""Float (non-rigorous) value of the zeroth-moment constant H_0 = sup_v h(v)/v of Theorem 8.
+"""Estimate the zeroth-moment constant H_0 = sup_v h(v)/v of Theorem 8.
 
-Nothing in the proofs depends on this file. Writes data/moment_constant.json with H_0, the maximizer v_0,
-the resulting Tc/M_0 = H_0/pi, and the optimal Einstein frequency Omega/M_0 and coupling lambda.
+The floating-point results in data/moment_constant.json give H_0, the
+maximizing v_0, Tc/M_0 = H_0/pi, and the corresponding optimal Einstein
+frequency Omega/M_0 and coupling lambda.
 """
 
 from __future__ import annotations

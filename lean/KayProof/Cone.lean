@@ -357,7 +357,8 @@ private theorem gap_entry {N : ℕ} (a : ℕ → ℝ) (n m : Fin N) :
       show n.val + m.val + 1 ≠ 0 by omega, sub_zero, add_zero]
     field_simp
 
-/-- Lemma 7: a finite KAY Rayleigh maximizer can be chosen in the positive,\n+gap-variable decreasing cone. -/
+/-- Lemma 7: a finite KAY Rayleigh maximizer can be chosen positive and
+non-increasing in the gap variables. -/
 theorem exists_cone_maximizer {N} (hN : 0 < N) {a : ℕ → ℝ} (ha : IsKernel a) :
     ∃ x ∈ sphere N, qf N a x = kappa N a ∧ InCone x := by
   classical

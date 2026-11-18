@@ -1,4 +1,4 @@
-"""Generate values.tex from the certificate receipts. Nothing in main.tex is typed by hand."""
+"""Read the certificate results and write the values quoted in the paper to values.tex."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ def sha(p: Path) -> str:
 
 
 def mid(ball: str, digits: int) -> str:
-    """Midpoint of an Arb ball string '[x +/- r]', truncated to `digits` significant digits (string, no rounding up)."""
+    """Return the midpoint text from an Arb string of the form '[x +/- r]'."""
     x = re.match(r'\[([-0-9.eE+]+)', ball).group(1)
     return x
 

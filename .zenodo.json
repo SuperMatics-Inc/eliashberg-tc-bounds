@@ -7,7 +7,7 @@
       "affiliation": "SuperMatics Inc."
     }
   ],
-  "description": "<p>Supplementary material for D. Rens, \"Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures\".</p><p>Contents: a Lean 4 formalization (Mathlib v4.35.0) of the finite-dimensional core of the proofs (16 theorems, axioms propext, Classical.choice and Quot.sound only); a primary computer-assisted proof of the Einstein inequality in Arb ball arithmetic and an independent exact-rational certificate, with their receipts; and the scripts that write the certificate numbers quoted in the paper, the figure data and the floating-point checks. Floating-point values marked as such in the paper are not certified.</p>",
+  "description": "<p>This supplement accompanies D. Rens, \"Sharp bounds on the Eliashberg critical temperature: a comparison principle, convexity in the spectrum, and the Kiessling–Altshuler–Yuzbashyan conjectures\".</p><p>Lean 4 formalizes the finite-dimensional core using Mathlib v4.35.0. The 16 theorems use only propext, Classical.choice and Quot.sound. Two calculations certify the Einstein inequality and include their results: the primary proof uses Arb ball arithmetic, and the independent check uses exact rationals. The scripts also generate the certificate values quoted in the paper, the figure data and the floating-point checks. The paper identifies the floating-point values separately from the certified results.</p>",
   "license": "Apache-2.0",
   "version": "1.0.0",
   "language": "eng",

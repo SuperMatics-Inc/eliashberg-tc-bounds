@@ -1,8 +1,11 @@
-"""Build the journal upload in submission/: one flat main.tex, its bibliography, class files, figures and a supplement zip.
+"""Assemble the files for a journal submission in submission/.
 
-The Springer Nature template asks for a single .tex file without \\input, so values.tex is inlined here.
-The script compiles the flat source with Tectonic, keeps main.bbl for the upload, and writes MANIFEST.txt with SHA-256 digests.
-Usage: python scripts/flatten.py [--tectonic PATH]
+The Springer Nature template requires a single TeX source. This script
+inserts values.tex into main.tex, compiles it with Tectonic and keeps the
+bibliography. It also copies the class files and figures, archives the
+supplement and writes SHA-256 digests to MANIFEST.txt.
+
+Run: python scripts/flatten.py [--tectonic PATH]
 """
 
 from __future__ import annotations
@@ -54,7 +57,7 @@ def flatten_tex() -> str:
     if re.search(r'\\(input|include)\{', src.replace(marker, '')):
         sys.exit('main.tex has another \\input or \\include; flatten it too')
     src = src.replace(marker, values.strip())
-    # The internal header comments (status, provenance, this script) do not belong in the upload.
+    # Omit comments before the document class from the assembled source.
     head, sep, body = src.partition('\\documentclass')
     if any(line.strip() and not line.startswith('%') for line in head.split('\n')):
         sys.exit('unexpected non-comment text before \\documentclass')
@@ -80,7 +83,8 @@ def build_supplement(dest: Path) -> list[tuple[Path, str]]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument('--tectonic', type=Path, default=TECTONIC)
+    ap.add_argument('--tectonic', type=Path, default=TECTONIC,
+                    help='Path to the Tectonic executable.')
     args = ap.parse_args()
 
     if OUT.exists():

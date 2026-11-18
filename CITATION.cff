@@ -1,9 +1,11 @@
 cff-version: 1.2.0
-message: "If you use this material, please cite the paper it accompanies."
+message: "Please cite the preprint and this supplement."
 title: "Supplement to 'Sharp bounds on the Eliashberg critical temperature': Lean formalization, computer-assisted certificates and scripts"
 type: software
 version: 1.0.0
 license: Apache-2.0
+doi: 10.5281/zenodo.24270482
+repository-code: https://github.com/SuperMatics-Inc/eliashberg-tc-bounds
 authors:
   - family-names: Rens
     given-names: Davis
@@ -25,4 +27,5 @@ preferred-citation:
       given-names: Davis
       affiliation: "SuperMatics Inc."
   year: 2026
+  doi: 10.48550/arXiv.2611.20496
   status: preprint

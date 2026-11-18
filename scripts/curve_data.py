@@ -1,6 +1,6 @@
-"""Float (non-rigorous) illustration data for the figures: h(v)/(g v^2) and the Einstein Tc curve.
+"""Compute floating-point data for the plots of h(v)/(g v^2) and Einstein Tc.
 
-Nothing in the proof depends on this file. Writes data/curve.json.
+The script writes data/curve.json for the figures rather than for the proof.
 """
 
 from __future__ import annotations
